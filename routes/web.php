@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\MahasiswaController;
 Route::get('/', function () {
     return view('layouts.starter');
 });
@@ -12,6 +14,14 @@ Route::get('/1', function () {
 });
 
 Route::get('/2', [DemoController::class, 'index']);
+
+Route::get('/dosen', [DosenController::class, 'index'])->name('dosenList');
+Route::get('/dosen/create', [DosenController::class, 'create'])->name('dosenCreate');
+Route::post('/dosen/create', [DosenController::class, 'store'])->name('dosenStore');
+
+
+
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswaList');
 
 
 Route::get('/dashboard', function () {
