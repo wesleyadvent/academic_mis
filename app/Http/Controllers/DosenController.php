@@ -50,7 +50,7 @@ class DosenController extends Controller
      */
     public function edit(Dosen $dosen)
     {
-        //
+        return view('dosen.edit')->with('dosen', $dosen);
     }
 
     /**
@@ -58,14 +58,31 @@ class DosenController extends Controller
      */
     public function update(Request $request, Dosen $dosen)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'birth_date' => 'required|date',
+            'email' => 'required|email|max:255|unique:dosen,email,' . $dosen->nik . ',nik',
+        ]);
+    
+        $dosen->update([
+            'name' => $request->name,
+            'birth_date' => $request->birth_date,
+            'email' => $request->email,
+        ]);
+    
+        // Redirect dengan pesan sukses
+        return redirect()->route('dosenList')->with('success', 'Dosen berhasil diperbarui.');
     }
+    
+    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Dosen $dosen)
     {
-        //
+        $dosen->delete();
+        return redirect(route('dosenList'))->with('Success', 'Dosen berhasil dihapus');
     }
 }

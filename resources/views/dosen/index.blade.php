@@ -126,15 +126,7 @@
                             <th style="width: 10%">Action</th>
                           </tr>
                         </thead>
-                        <tfoot>
-                          <tr>
-                            <th>NIK</th>
-                            <th>Name</th>
-                            <th>Birth Date</th>
-                            <th>Email</th>
-                            <th>Action</th>
-                          </tr>
-                        </tfoot>
+                       
                         <tbody>
                             @foreach($dosens as $dosen)
                           <tr>
@@ -144,29 +136,34 @@
                             <td>{{$dosen ->email}}</td>
                             <td>
                               <div class="form-button-action">
+                              <button
+                              type="button"
+                              data-bs-toggle="tooltip"
+                              title="Edit Dosen"
+                              class="btn btn-link btn-primary btn-lg edit-dosen"
+                              data-original-title="Edit Dosen"
+                              data-url="{{ route('dosenEdit', $dosen->nik) }}"
+                            >
+                              <i class="fa fa-edit"></i>
+                            </button>
+
+                                <form method='post' action="{{route('dosenDelete', [$dosen->nik])}}">
+                                  @csrf
+                                  @method('DELETE')
                                 <button
                                   type="button"
                                   data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
+                                  title="Remove Dosen"
+                                  class="btn btn-link btn-danger delete-dosen"
+                                  data-original-title="Remove Dosen"
                                 >
                                   <i class="fa fa-times"></i>
                                 </button>
+                      </form>
                               </div>
                             </td>
                           </tr>
                           @endforeach
- 
                         </tbody>
                       </table>
                     </div>
@@ -181,5 +178,36 @@
 @endsection
 
 @section('ExtraJS')
+<script src="{{asset('assets/js/plugin/sweetalert2/sweetalert2.all.min.js')}}"></script>
+<script>
+$(".edit-dosen").click(function(){
+  window.location = $(this).data("url");
+
+});
+
+
+    $(".delete-dosen").click(function(e){
+        e.preventDefault();
+        Swal.fire({
+            title: "Are you sure want to delete this data?",
+            showCancelButton: true,
+            confirmButtonText: "Yes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(this).closest("form").submit();
+            }
+        });
+    });
+
+    @if(session('success'))
+      $.notify({
+        message: "{{ session('success') }}"
+      }, {
+        delay: 5000,
+        type: "info"
+      });
+    @endif;
+</script>
+
 
 @endsection

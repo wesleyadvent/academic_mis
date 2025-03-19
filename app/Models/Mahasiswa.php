@@ -15,6 +15,7 @@ class Mahasiswa extends Model
     protected $keyType = 'string';
 
     public $incrementing = false;
+
     
     public function dosenWali() {
         return $this->belongsTo(Dosen::class, 'Dosen_nik');

@@ -17,11 +17,15 @@ Route::get('/2', [DemoController::class, 'index']);
 
 Route::get('/dosen', [DosenController::class, 'index'])->name('dosenList');
 Route::get('/dosen/create', [DosenController::class, 'create'])->name('dosenCreate');
+Route::get('/dosen/edit/{dosen}', [DosenController::class, 'edit'])->name('dosenEdit');
+Route::put('/dosen/edit/{dosen}', [DosenController::class, 'update'])->name('dosenUpdate');
 Route::post('/dosen/create', [DosenController::class, 'store'])->name('dosenStore');
-
+Route::delete('/dosen/delet/{dosen}', [DosenController::class,  'destroy'])->name('dosenDelete');
 
 
 Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswaList');
+Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswaCreate');
+Route::post('/mahasiswa/create', [MahasiswaController::class, 'store'])->name('mahasiswaStore');
 
 
 Route::get('/dashboard', function () {
