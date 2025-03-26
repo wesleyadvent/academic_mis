@@ -27,6 +27,8 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        //$nip = Auth::nip();
+        //$nama 
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

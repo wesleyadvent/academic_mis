@@ -22,6 +22,8 @@ class User extends Authenticatable
         'nip',
         'name',
         'password',
+        'email',
+        'role_id',
     ];
 
     protected $primaryKey = 'nip';

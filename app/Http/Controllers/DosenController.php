@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Validation\Rule;
 
 use App\Models\Dosen;
 use Illuminate\Http\Request;
@@ -58,21 +59,22 @@ class DosenController extends Controller
      */
     public function update(Request $request, Dosen $dosen)
     {
-        // Validasi input
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $validatedData = $request->validate([
+            'nik' => [
+                'required', 'string', 'max:7', 
+                Rule::unique('dosen', 'nik')->ignore($dosen->nik, 'nik')
+            ],
+            'email' => [
+                'required', 'string', 'email', 'max:50', 
+                Rule::unique('dosen', 'email')->ignore($dosen->email, 'email')
+            ],
             'birth_date' => 'required|date',
-            'email' => 'required|email|max:255|unique:dosen,email,' . $dosen->nik . ',nik',
+            'name' => 'required|string|max:100',
         ]);
     
-        $dosen->update([
-            'name' => $request->name,
-            'birth_date' => $request->birth_date,
-            'email' => $request->email,
-        ]);
-    
-        // Redirect dengan pesan sukses
-        return redirect()->route('dosenList')->with('success', 'Dosen berhasil diperbarui.');
+        $dosen->update($validatedData);
+        
+        return redirect()->route('dosenList')->with('success', 'Dosen Berhasil Diubah');
     }
     
     
