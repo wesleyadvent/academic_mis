@@ -14,6 +14,7 @@ class UserRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+<<<<<<< HEAD
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         if(Auth::user() != null && in_array(Auth::user()->role_id, $roles)){
@@ -21,5 +22,14 @@ class UserRole
         }
         return response(view('unauthorized'));
 
+=======
+    public function handle(Request $request, Closure $next, $roles, ): Response
+    {
+        if(Auth::user() != null && in_array(Auth::user()->role_id, $roles)) {
+            return $next($request);
+        }
+
+        return $response(view('unauthorized'));
+>>>>>>> 876d035c3052ce7a6701772c361186dbfa2ca373
     }
 }

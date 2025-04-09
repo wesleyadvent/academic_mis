@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+<<<<<<< HEAD
 use Exception;
+=======
+>>>>>>> 876d035c3052ce7a6701772c361186dbfa2ca373
 
 class RegisteredUserController extends Controller
 {
@@ -30,6 +33,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+<<<<<<< HEAD
         try {
             // Validasi input
             $request->validate([
@@ -59,5 +63,27 @@ class RegisteredUserController extends Controller
             // Dump and die untuk debugging
             return dd($e);
         }
+=======
+        $request->validate([
+            'nip' => ['required', 'string', 'max:7', 'unique:karyawan'],
+            'name' => ['required', 'string', 'max:255'],
+            //'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'nip' => $request->nip,
+            'name' => $request->name,
+            'email' => $request->email,
+            'role_id' => '2',
+            'password' => Hash::make($request->password),
+        ]);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        return redirect(route('dashboard', absolute: false));
+>>>>>>> 876d035c3052ce7a6701772c361186dbfa2ca373
     }
 }

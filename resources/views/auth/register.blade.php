@@ -2,6 +2,16 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+<<<<<<< HEAD
+=======
+        <!-- NIP -->
+        <div>
+            <x-input-label for="nip" :value="__('nip')" />
+            <x-text-input id="nip" class="block mt-1 w-full" type="text" name="nip" :value="old('nip')" required autocomplete="nip" />
+            <x-input-error :messages="$errors->get('nip')" class="mt-2" />
+        </div>
+
+>>>>>>> 876d035c3052ce7a6701772c361186dbfa2ca373
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -9,6 +19,7 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+<<<<<<< HEAD
         <!-- NIP -->
         <div>
             <x-input-label for="nip" :value="__('NIP')" />
@@ -22,6 +33,15 @@
 {{--            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />--}}
 {{--            <x-input-error :messages="$errors->get('email')" class="mt-2" />--}}
 {{--        </div>--}}
+=======
+        <!-- Email Address
+        <div class="mt-4">
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div> -->
+
+>>>>>>> 876d035c3052ce7a6701772c361186dbfa2ca373
 
         <!-- Password -->
         <div class="mt-4">

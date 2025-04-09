@@ -19,11 +19,19 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+<<<<<<< HEAD
         'name',
         'email',
         'role_id',
         'nip',
         'password',
+=======
+        'nip',
+        'name',
+        'password',
+        'email',
+        'role_id',
+>>>>>>> 876d035c3052ce7a6701772c361186dbfa2ca373
     ];
 
     protected $primaryKey = 'nip';

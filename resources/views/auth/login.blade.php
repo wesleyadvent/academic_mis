@@ -5,13 +5,25 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+<<<<<<< HEAD
         <!-- Email Address -->
         <!--<div>
+=======
+        <div>
+            <x-input-label for="nip" :value="__('nip')" />
+            <x-text-input id="nip" class="block mt-1 w-full" type="text" name="nip" :value="old('nip')" required autofocus autocomplete="nip" />
+            <x-input-error :messages="$errors->get('nip')" class="mt-2" />
+        </div>
+
+        <!-- Email Address 
+        <div>
+>>>>>>> 876d035c3052ce7a6701772c361186dbfa2ca373
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>-->
 
+<<<<<<< HEAD
         <!-- NIP -->
         <div>
             <x-input-label for="nip" :value="__('NIP')" />
@@ -19,6 +31,8 @@
             <x-input-error :messages="$errors->get('nip')" class="mt-2" />
         </div>
 
+=======
+>>>>>>> 876d035c3052ce7a6701772c361186dbfa2ca373
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

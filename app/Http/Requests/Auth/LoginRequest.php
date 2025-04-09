@@ -27,7 +27,10 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
+<<<<<<< HEAD
             # 'email' => ['required', 'string', 'email'],
+=======
+>>>>>>> 876d035c3052ce7a6701772c361186dbfa2ca373
             'nip' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
@@ -69,7 +72,11 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
+<<<<<<< HEAD
             'email' => trans('auth.throttle', [
+=======
+            'nip' => trans('auth.throttle', [
+>>>>>>> 876d035c3052ce7a6701772c361186dbfa2ca373
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
